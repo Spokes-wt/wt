@@ -1,0 +1,134 @@
+{
+ "positions": [
+  {
+   "id": "TSLA-385P-1030",
+   "ticker": "TSLA",
+   "type": "CSP",
+   "strike": 385,
+   "exp": "2026-10-30",
+   "credit": 23.55,
+   "qty": 1,
+   "opened": "2026-09-25",
+   "open_under": 372.11,
+   "open_under_note": "close 9/25 (Yahoo)",
+   "bid": 18.8,
+   "ask": 19.1,
+   "last": 18.94,
+   "mark": 18.95,
+   "iv": 46.3,
+   "delta": -0.5435
+  },
+  {
+   "id": "SPCX-1525P-1106",
+   "ticker": "SPCX",
+   "type": "CSP",
+   "strike": 152.5,
+   "exp": "2026-11-06",
+   "credit": 11.15,
+   "qty": 2,
+   "opened": "2026-09-29",
+   "open_under": 149.24,
+   "open_under_note": "close 9/29 (Yahoo)",
+   "bid": 3.6,
+   "ask": 3.9,
+   "last": 3.57,
+   "mark": 3.75,
+   "iv": 49.9,
+   "delta": -0.2703
+  }
+ ],
+ "closed": [],
+ "monthly_source": "workbook not found",
+ "events": [
+  {
+   "date": "2026-10-15",
+   "tag": "Roadster reveal",
+   "tk": "TSLA",
+   "src": "https://wetalktesla.com/2026/09/28/tesla-delays-roadster-reveal-october-15-severe-weather/"
+  },
+  {
+   "date": "2026-10-21",
+   "tag": "TSLA earnings",
+   "tk": "TSLA",
+   "note": "AMC",
+   "catalyst": true,
+   "short": "earnings"
+  },
+  {
+   "date": "2026-10-26",
+   "tag": "SPCX unlock 7%",
+   "tk": "SPCX",
+   "catalyst": true,
+   "src": "https://thefinancialsciences.com/spacex-lockup-calendar/",
+   "short": "unlock 7%"
+  },
+  {
+   "date": "2026-10-30",
+   "tag": "Cybercab NHTSA",
+   "tk": "TSLA",
+   "note": "reported",
+   "src": "https://electronmotion.com/2026/10/08/tesla-cybercab/"
+  },
+  {
+   "date": "2026-10-30",
+   "tag": "385P expiry",
+   "tk": "TSLA",
+   "exp": true
+  },
+  {
+   "date": "2026-11-06",
+   "tag": "SPCX unlock 28%",
+   "tk": "SPCX",
+   "note": "est",
+   "catalyst": true,
+   "src": "https://spcxhub.io/lockups",
+   "short": "unlock 28%"
+  },
+  {
+   "date": "2026-11-06",
+   "tag": "152.5P expiry",
+   "tk": "SPCX",
+   "exp": true
+  },
+  {
+   "date": "2026-11-08",
+   "tag": "Starship F15",
+   "tk": "SPCX",
+   "note": "NET",
+   "src": "https://www.nasaspaceflight.com/2026/10/ship-40-returns-ship-42-more-testing/"
+  },
+  {
+   "date": "2026-12-08",
+   "tag": "Lockup ends",
+   "tk": "SPCX"
+  }
+ ],
+ "market": {
+  "SPCX": {
+   "spot": 163.3939,
+   "prev": 162.57,
+   "iv30": 50.658,
+   "atm": {
+    "iv": 50.4,
+    "strike": 162.5,
+    "exp": "2026-11-13"
+   },
+   "iv_rank": null,
+   "ts": "2026-10-12 22:09:47"
+  },
+  "TSLA": {
+   "spot": 377.84,
+   "prev": 382.7,
+   "iv30": 42.307,
+   "atm": {
+    "iv": 41.9,
+    "strike": 380.0,
+    "exp": "2026-11-13"
+   },
+   "iv_rank": null,
+   "ts": "2026-10-12 22:09:46"
+  }
+ },
+ "refreshed_utc": "2026-10-12 22:09:47Z",
+ "refreshed_run": "2026-10-12T22:10:47.948603+00:00"
+}

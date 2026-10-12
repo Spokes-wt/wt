@@ -1,0 +1,124 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Wheel"><meta name="theme-color" content="#0a0b0f">
+<link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="icon-512.png">
+<title>Wheel Desk</title>
+<style>
+:root{--bg:#0a0b0f;--card:#14161d;--line:#232633;--tx:#f2f4f8;--mut:#8a90a2;--g:#22e58a;--r:#ff4d5e;--a:#ffb020;--tsla:#E31937;--spcx:#3B82F6}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Inter,Roboto,sans-serif;overflow:hidden;-webkit-font-smoothing:antialiased}
+body{display:flex;flex-direction:column;gap:1vh;padding:calc(env(safe-area-inset-top) + 1vh) calc(env(safe-area-inset-right) + 10px) calc(env(safe-area-inset-bottom) + .6vh) calc(env(safe-area-inset-left) + 10px);height:100dvh}
+.n{font-variant-numeric:tabular-nums}.g{color:var(--g)}.r{color:var(--r)}.a{color:var(--a)}.m{color:var(--mut)}
+.hdr{display:flex;justify-content:space-between;align-items:flex-end}
+.big{font-size:clamp(26px,4.6vh,40px);font-weight:800;letter-spacing:-1px;line-height:1}
+.lbl{font-size:clamp(9px,1.25vh,11px);color:var(--mut);text-transform:uppercase;letter-spacing:.6px;font-weight:600}
+.tag{font-size:9px;font-weight:800;padding:2px 5px;border-radius:4px;background:#3a2a05;color:var(--a);letter-spacing:.5px}
+.row{display:flex;gap:6px}
+.iv{flex:1;display:flex;align-items:center;justify-content:space-between;background:var(--card);border-radius:10px;padding:.6vh 8px;border-left:3px solid}
+.iv b{font-size:clamp(14px,2.1vh,18px)}
+.chip{font-size:clamp(8px,1.15vh,10px);font-weight:800;padding:2px 6px;border-radius:99px;white-space:nowrap;letter-spacing:.3px}
+.c-a{background:rgba(255,176,32,.16);color:var(--a)}.c-g{background:rgba(34,229,138,.15);color:var(--g)}.c-r{background:rgba(255,77,94,.16);color:var(--r)}.c-b{background:rgba(59,130,246,.18);color:#8db8ff}.c-m{background:#222632;color:var(--mut)}
+.cards{display:flex;flex-direction:column;gap:.9vh;flex:1 1 auto;min-height:0;justify-content:center}
+.card{flex:1;max-height:24vh;min-height:0;background:var(--card);border-radius:14px;padding:.9vh 10px;border-left:4px solid;display:flex;flex-direction:column;justify-content:space-between;gap:.4vh}
+.card.amb{box-shadow:inset 0 0 0 1px rgba(255,176,32,.45)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.tk{font-weight:800;font-size:clamp(13px,2vh,17px)}.tk span{font-weight:600;color:var(--mut);font-size:.8em}
+.pl{font-size:clamp(20px,3.3vh,30px);font-weight:800;letter-spacing:-.5px;line-height:1}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px 6px}
+.grid div{display:flex;flex-direction:column}.grid b{font-size:clamp(11px,1.75vh,15px);font-weight:700}
+.bar{height:6px;background:#262a36;border-radius:4px;overflow:hidden;position:relative}
+.bar i{display:block;height:100%;border-radius:4px}.bar u{position:absolute;left:50%;top:-1px;bottom:-1px;width:2px;background:#fff8}
+.chips{display:flex;gap:4px;flex-wrap:nowrap;overflow:hidden}
+.sec{display:flex;justify-content:space-between;align-items:baseline}
+.strip{display:flex;gap:6px}
+.mo{flex:1;background:var(--card);border-radius:10px;padding:.5vh 8px}
+.mo b{font-size:clamp(13px,1.9vh,16px)}
+.ev{display:grid;grid-template-columns:1fr;gap:3px 6px}
+.e{display:flex;align-items:center;gap:4px;background:var(--card);border-radius:8px;padding:.45vh 5px;font-size:clamp(10px,1.45vh,12.5px);border-left:3px solid;white-space:nowrap;overflow:hidden}
+.e .d{font-weight:800;min-width:40px}.e .t{overflow:hidden;text-overflow:ellipsis;flex:1}
+.ft{text-align:center;font-size:9px;color:#5c6273}
+</style></head><body>
+<div class="hdr">
+ <div><div class="lbl">Open P&amp;L</div><div id="tpl" class="big n">—</div><div class="lbl n" style="margin-top:3px">Reserved total <b id="res" style="color:var(--tx);font-size:1.2em">—</b></div></div>
+ <div style="text-align:right"> <div class="lbl" style="margin-top:2px"><span class="tag">DELAYED</span> <span id="ts" class="n">—</span></div></div>
+</div>
+<div class="row" id="ivrow"></div>
+<div class="cards" id="cards"></div>
+<div><div class="sec"><span class="lbl">Realized · ROI on reserved</span><span class="lbl" id="msrc" style="font-size:8px"></span></div><div class="strip" id="months" style="margin-top:3px"></div></div>
+<div><div class="sec"><span class="lbl">Next 45 days</span><span class="lbl" style="font-size:8px">est/NET = tentative</span></div><div class="ev" id="events" style="margin-top:3px"></div></div>
+<div class="ft">Status board, not advice. Trader decides.</div>
+<script id="wheel-data" type="application/json">{"positions": [{"id": "TSLA-385P-1030", "ticker": "TSLA", "type": "CSP", "strike": 385, "exp": "2026-10-30", "credit": 23.55, "qty": 1, "opened": "2026-09-25", "open_under": 372.11, "open_under_note": "close 9/25 (Yahoo)", "bid": 18.8, "ask": 19.1, "last": 18.94, "mark": 18.95, "iv": 46.3, "delta": -0.5435}, {"id": "SPCX-1525P-1106", "ticker": "SPCX", "type": "CSP", "strike": 152.5, "exp": "2026-11-06", "credit": 11.15, "qty": 2, "opened": "2026-09-29", "open_under": 149.24, "open_under_note": "close 9/29 (Yahoo)", "bid": 3.6, "ask": 3.9, "last": 3.57, "mark": 3.75, "iv": 49.9, "delta": -0.2703}], "closed": [], "monthly_source": "workbook not found", "events": [{"date": "2026-10-15", "tag": "Roadster reveal", "tk": "TSLA", "src": "https://wetalktesla.com/2026/09/28/tesla-delays-roadster-reveal-october-15-severe-weather/"}, {"date": "2026-10-21", "tag": "TSLA earnings", "tk": "TSLA", "note": "AMC", "catalyst": true, "short": "earnings"}, {"date": "2026-10-26", "tag": "SPCX unlock 7%", "tk": "SPCX", "catalyst": true, "src": "https://thefinancialsciences.com/spacex-lockup-calendar/", "short": "unlock 7%"}, {"date": "2026-10-30", "tag": "Cybercab NHTSA", "tk": "TSLA", "note": "reported", "src": "https://electronmotion.com/2026/10/08/tesla-cybercab/"}, {"date": "2026-10-30", "tag": "385P expiry", "tk": "TSLA", "exp": true}, {"date": "2026-11-06", "tag": "SPCX unlock 28%", "tk": "SPCX", "note": "est", "catalyst": true, "src": "https://spcxhub.io/lockups", "short": "unlock 28%"}, {"date": "2026-11-06", "tag": "152.5P expiry", "tk": "SPCX", "exp": true}, {"date": "2026-11-08", "tag": "Starship F15", "tk": "SPCX", "note": "NET", "src": "https://www.nasaspaceflight.com/2026/10/ship-40-returns-ship-42-more-testing/"}, {"date": "2026-12-08", "tag": "Lockup ends", "tk": "SPCX"}], "market": {"SPCX": {"spot": 163.3939, "prev": 162.57, "iv30": 50.658, "atm": {"iv": 50.4, "strike": 162.5, "exp": "2026-11-13"}, "iv_rank": null, "ts": "2026-10-12 22:09:47"}, "TSLA": {"spot": 377.84, "prev": 382.7, "iv30": 42.307, "atm": {"iv": 41.9, "strike": 380.0, "exp": "2026-11-13"}, "iv_rank": null, "ts": "2026-10-12 22:09:46"}}, "refreshed_utc": "2026-10-12 22:09:47Z", "refreshed_run": "2026-10-12T22:10:47.948603+00:00"}</script>
+<script>
+/* ===== EVENTS (manual edits) =====
+   Base events live in data.json -> "events". Add/override here: {date:'YYYY-MM-DD', tag:'2-3 words', tk:'TSLA'|'SPCX', note:'est'|'NET'|'AMC', catalyst:true}
+   catalyst:true => counts for the "through event" chip on positions expiring after it. */
+const EVENTS = [
+];
+/* ================================== */
+const C={TSLA:'#E31937',SPCX:'#3B82F6'};
+let DATA=JSON.parse(document.getElementById('wheel-data').textContent||'{}');
+const $=id=>document.getElementById(id);
+const nz=v=>v!==null&&v!==undefined&&!isNaN(v);
+const usd=(v,s)=>nz(v)?(s&&v>0?'+':v<0?'−':'')+'$'+Math.abs(v).toLocaleString('en-US',{maximumFractionDigits:0}):'—';
+const f2=v=>nz(v)?v.toFixed(2):'—';
+const pct=(v,s)=>nz(v)?(s&&v>0?'+':v<0?'−':'')+Math.abs(v).toFixed(1)+'%':'—';
+const cls=v=>!nz(v)?'m':v>0?'g':v<0?'r':'';
+const day=s=>new Date(s+'T12:00:00');
+function today(){const t=new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'}));t.setHours(12,0,0,0);return t}
+const dte=e=>Math.round((day(e)-today())/864e5);
+const md=s=>day(s).toLocaleDateString('en-US',{month:'short',day:'numeric'});
+function render(){
+ const D=DATA,mk=D.market||{},evs=[...(D.events||[]),...EVENTS].sort((a,b)=>a.date.localeCompare(b.date));
+ let tot=0,ok=true,res=0;
+ $('cards').innerHTML=(D.positions||[]).map(p=>{
+  const m=mk[p.ticker]||{},spot=m.spot,mark=p.mark,cr=p.credit,q=p.qty;
+  const pl=nz(mark)?(cr-mark)*100*q:null; if(nz(pl))tot+=pl;else ok=false; res+=p.strike*100*q;
+  const chg=nz(mark)?mark-cr:null,chgp=nz(mark)?(mark/cr-1)*100:null,cap=nz(mark)?(1-mark/cr)*100:null;
+  const d=dte(p.exp),be=p.strike-cr,dist=nz(spot)?(spot/p.strike-1)*100:null;
+  const amb=d<=25||(nz(cap)&&cap>=50);
+  const ch=[];
+  if(nz(mark)&&mark<=cr*.5)ch.push(['50% HIT','c-g']);else if(nz(mark)&&mark<=cr*.55)ch.push(['near 50%','c-a']);
+  if(d<=25)ch.push(['exit window','c-a']);
+  const thr=evs.filter(e=>e.catalyst&&e.date>=today().toISOString().slice(0,10)&&e.date<=p.exp&&(!e.tk||e.tk===p.ticker));
+  if(thr.length)ch.push(['thru '+thr.map(e=>(e.short||e.tag)+(e.note==='est'?' est':'')).join(' · '),'c-b']);
+  if(nz(dist)&&dist<0)ch.push(['ITM','c-r']);
+  const barc=!nz(cap)?'#444':cap<0?'var(--r)':cap>=50?'var(--a)':'var(--g)';
+  return `<div class="card ${amb?'amb':''}" style="border-color:${C[p.ticker]}">
+  <div class="top"><div class="tk" style="color:${C[p.ticker]}">${p.ticker} <span>${p.strike}P · ${md(p.exp)}${' · '+(nz(p.qty)?p.qty+'×':'—')}</span></div>
+   <div style="text-align:right"><div class="pl n ${cls(pl)}">${usd(pl,1)}</div><div class="lbl n" style="margin-top:2px">Reserved <b style="color:var(--tx);font-size:1.25em">${nz(p.qty)?usd(p.strike*100*p.qty):'—'}</b></div></div></div>
+  <div class="grid n">
+   <div><span class="lbl">Spot</span><b>${f2(spot)}</b></div>
+   <div><span class="lbl">Open @</span><b>${f2(p.open_under)}</b></div>
+   <div><span class="lbl">DTE</span><b class="${d<=25?'a':''}">${d}</b></div>
+   <div><span class="lbl">To strike</span><b class="${cls(dist)}">${pct(dist,1)}</b></div>
+   <div><span class="lbl">Credit→Mark</span><b>${f2(cr)}→${f2(mark)}</b></div>
+   <div><span class="lbl">Δ $ / %</span><b class="${cls(-chg)}" style="white-space:nowrap">${nz(chg)?(chg>0?'+':'−')+Math.abs(chg).toFixed(2):'—'} <small style="font-size:.75em">${pct(chgp,1)}</small></b></div>
+   <div><span class="lbl">Breakeven</span><b>${f2(be)}</b></div>
+   <div><span class="lbl">Max kept</span><b class="${amb&&cap>=50?'a':cls(cap)}">${pct(cap)}</b></div>
+  </div>
+  <div class="bar"><i style="width:${nz(cap)?Math.max(0,Math.min(100,cap)):0}%;background:${barc}"></i><u></u></div>
+  <div class="chips">${ch.map(c=>`<span class="chip ${c[1]}">${c[0]}</span>`).join('')||'<span class="chip c-m">hold zone</span>'}</div></div>`}).join('');
+ $('tpl').textContent=ok?usd(tot,1):'—';$('tpl').className='big n '+(ok?cls(tot):'m');
+ $('res').textContent=usd(res);
+ const r=D.refreshed_utc?new Date(D.refreshed_utc):null;
+ $('ts').textContent=r?r.toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET':'—';
+ $('ivrow').innerHTML=Object.keys(C).map(t=>{const a=(mk[t]||{}).atm,iv=a?a.iv:null,rk=(mk[t]||{}).iv_rank;
+  return `<div class="iv n" style="border-color:${C[t]}"><span class="lbl" style="color:${C[t]};white-space:nowrap">${t} IV</span><b class="${nz(iv)&&iv<50?'a':''}">${nz(iv)?iv.toFixed(1)+'%':'—'}</b><span class="lbl">Rk ${nz(rk)?rk:'—'}</span>${nz(iv)&&iv<50?'<span class="chip c-a">PREF IV MISSED</span>':''}</div>`}).join('');
+ // monthly from closed trades
+ const cl=D.closed||[],mons={};const st=new Date(2026,8,1),now=today();
+ for(let d=new Date(st);d<=now;d.setMonth(d.getMonth()+1))mons[d.toISOString().slice(0,7)]=0;
+ cl.forEach(c=>{const k=c.closed.slice(0,7);mons[k]=(mons[k]||0)+(c.credit-c.debit)*100*c.qty});
+ const base=res||1;let ytd=0;
+ const mh=Object.entries(mons).map(([k,v])=>{ytd+=v;return `<div class="mo n"><div class="lbl">${day(k+'-15').toLocaleDateString('en-US',{month:'short',year:'2-digit'})}</div><b class="${cls(v)}">${usd(v)}</b> <span class="m" style="font-size:11px">${pct(v/base*100)}</span></div>`});
+ mh.push(`<div class="mo n" style="border:1px solid var(--line)"><div class="lbl">YTD · ${cl.length} closed</div><b class="${cls(ytd)}">${usd(ytd)}</b> <span class="m" style="font-size:11px">${pct(ytd/base*100)}</span></div>`);
+ $('months').innerHTML=mh.join('');$('msrc').textContent='src: '+(D.monthly_source||'—');
+ const t0=today(),lim=new Date(t0.getTime()+45*864e5);
+ $('events').innerHTML=evs.filter(e=>day(e.date)>=t0&&day(e.date)<=lim).map(e=>`<div class="e" style="border-color:${C[e.tk]||'#888'}"><span class="d n">${md(e.date)}</span><span class="t">${e.tag}</span>${e.note?`<span class="chip ${e.note==='est'||e.note==='NET'||e.note==='reported'?'c-a':'c-m'}">${e.note==='reported'?'rptd':e.note}</span>`:''}${e.exp?'<span class="chip c-m">exp</span>':''}</div>`).join('');
+}
+render();
+// When hosted: try fresh data.json (falls back silently to embedded data when opened as file)
+if(location.protocol.startsWith('http')){fetch('data.json',{cache:'no-store'}).then(r=>r.json()).then(j=>{DATA=j;render()}).catch(()=>{});
+ if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});}
+</script></body></html>
