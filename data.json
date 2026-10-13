@@ -11,12 +11,12 @@
    "opened": "2026-09-25",
    "open_under": 372.11,
    "open_under_note": "close 9/25 (Yahoo)",
-   "bid": 21.55,
-   "ask": 21.75,
-   "last": 21.01,
-   "mark": 21.65,
+   "bid": 21.35,
+   "ask": 21.7,
+   "last": 22.12,
+   "mark": 21.525,
    "iv": 48.5,
-   "delta": -0.5839
+   "delta": -0.5828
   },
   {
    "id": "SPCX-1525P-1106",
@@ -30,11 +30,30 @@
    "open_under": 149.24,
    "open_under_note": "close 9/29 (Yahoo)",
    "bid": 5.8,
-   "ask": 5.95,
-   "last": 5.95,
-   "mark": 5.875,
-   "iv": 50.8,
-   "delta": -0.3821
+   "ask": 6.0,
+   "last": 5.8,
+   "mark": 5.9,
+   "iv": 50.5,
+   "delta": -0.3853
+  },
+  {
+   "id": "SPCX-160P-1120",
+   "ticker": "SPCX",
+   "type": "CSP",
+   "strike": 160,
+   "exp": "2026-11-20",
+   "credit": 12.0,
+   "qty": 2,
+   "opened": "2026-10-13",
+   "opened_time": "15:05 ET",
+   "open_under": 156.65,
+   "open_under_note": "Yahoo 1m bar open 15:05 ET 10/13",
+   "bid": 11.95,
+   "ask": 12.0,
+   "last": 11.9,
+   "mark": 11.975,
+   "iv": 51.9,
+   "delta": -0.5075
   }
  ],
  "closed": [],
@@ -98,6 +117,12 @@
    "src": "https://www.nasaspaceflight.com/2026/10/ship-40-returns-ship-42-more-testing/"
   },
   {
+   "date": "2026-11-20",
+   "tag": "160P expiry",
+   "tk": "SPCX",
+   "exp": true
+  },
+  {
    "date": "2026-12-08",
    "tag": "Lockup ends",
    "tk": "SPCX"
@@ -105,30 +130,30 @@
  ],
  "market": {
   "SPCX": {
-   "spot": 156.9,
+   "spot": 156.72,
    "prev": 163.42,
-   "iv30": 52.079,
+   "iv30": 51.934,
    "atm": {
-    "iv": 52.3,
+    "iv": 52.1,
     "strike": 157.5,
     "exp": "2026-11-13"
    },
    "iv_rank": null,
-   "ts": "2026-10-13 18:34:34"
+   "ts": "2026-10-13 19:09:36"
   },
   "TSLA": {
-   "spot": 373.895,
+   "spot": 374.05,
    "prev": 378.03,
-   "iv30": 43.115,
+   "iv30": 43.046,
    "atm": {
-    "iv": 42.9,
+    "iv": 42.8,
     "strike": 375.0,
     "exp": "2026-11-13"
    },
    "iv_rank": null,
-   "ts": "2026-10-13 18:34:40"
+   "ts": "2026-10-13 19:09:41"
   }
  },
- "refreshed_utc": "2026-10-13 18:34:40Z",
- "refreshed_run": "2026-10-13T18:35:27.036878+00:00"
+ "refreshed_utc": "2026-10-13 19:09:41Z",
+ "refreshed_run": "2026-10-13T19:10:16.024086+00:00"
 }
