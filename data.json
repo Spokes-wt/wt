@@ -11,12 +11,12 @@
    "opened": "2026-09-25",
    "open_under": 372.11,
    "open_under_note": "close 9/25 (Yahoo)",
-   "bid": 12.35,
-   "ask": 12.5,
-   "last": 12.35,
-   "mark": 12.425,
-   "iv": 55.2,
-   "delta": -0.4593
+   "bid": 12.1,
+   "ask": 12.7,
+   "last": 12.2,
+   "mark": 12.4,
+   "iv": 54.6,
+   "delta": -0.4603
   },
   {
    "id": "SPCX-1525P-1106",
@@ -29,12 +29,12 @@
    "opened": "2026-09-29",
    "open_under": 149.24,
    "open_under_note": "close 9/29 (Yahoo)",
-   "bid": 4.55,
-   "ask": 4.75,
-   "last": 4.5,
-   "mark": 4.65,
-   "iv": 55.9,
-   "delta": -0.3486
+   "bid": 3.75,
+   "ask": 4.3,
+   "last": 4.3,
+   "mark": 4.025,
+   "iv": 54.5,
+   "delta": -0.3252
   },
   {
    "id": "SPCX-160P-1120",
@@ -48,12 +48,12 @@
    "opened_time": "15:05 ET",
    "open_under": 156.65,
    "open_under_note": "Yahoo 1m bar open 15:05 ET 10/13",
-   "bid": 10.0,
-   "ask": 10.15,
-   "last": 10.1,
-   "mark": 10.075,
-   "iv": 51.9,
-   "delta": -0.4912
+   "bid": 9.3,
+   "ask": 9.6,
+   "last": 9.44,
+   "mark": 9.45,
+   "iv": 51.1,
+   "delta": -0.4754
   },
   {
    "id": "SPCX-150P-1106",
@@ -67,12 +67,12 @@
    "opened_time": "15:55 ET",
    "open_under": 146.98,
    "open_under_note": "Yahoo 1m bar close 15:55 ET 10/20",
-   "bid": 3.65,
-   "ask": 3.85,
-   "last": 3.9,
-   "mark": 3.75,
-   "iv": 56.0,
-   "delta": -0.2991
+   "bid": 3.15,
+   "ask": 3.4,
+   "last": 3.3,
+   "mark": 3.275,
+   "iv": 54.5,
+   "delta": -0.2761
   }
  ],
  "closed": [],
@@ -153,30 +153,30 @@
  ],
  "market": {
   "SPCX": {
-   "spot": 158.31,
+   "spot": 158.74,
    "prev": 147.79,
-   "iv30": 52.268,
+   "iv30": 51.251,
    "atm": {
-    "iv": 52.1,
+    "iv": 51.3,
     "strike": 157.5,
     "exp": "2026-11-20"
    },
    "iv_rank": null,
-   "ts": "2026-10-21 18:17:13"
+   "ts": "2026-10-21 20:18:11"
   },
   "TSLA": {
-   "spot": 386.66,
+   "spot": 388.0,
    "prev": 373.71,
-   "iv30": 43.203,
+   "iv30": 42.826,
    "atm": {
-    "iv": 43.3,
-    "strike": 385.0,
+    "iv": 43.0,
+    "strike": 390.0,
     "exp": "2026-11-20"
    },
    "iv_rank": null,
-   "ts": "2026-10-21 18:17:08"
+   "ts": "2026-10-21 20:18:43"
   }
  },
- "refreshed_utc": "2026-10-21 18:17:13Z",
- "refreshed_run": "2026-10-21T18:18:09.896302+00:00"
+ "refreshed_utc": "2026-10-21 20:18:43Z",
+ "refreshed_run": "2026-10-21T20:19:21.183763+00:00"
 }
