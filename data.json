@@ -11,12 +11,12 @@
    "opened": "2026-09-25",
    "open_under": 372.11,
    "open_under_note": "close 9/25 (Yahoo)",
-   "bid": 13.25,
-   "ask": 13.45,
-   "last": 13.5,
-   "mark": 13.35,
-   "iv": 58.5,
-   "delta": -0.4597
+   "bid": 12.7,
+   "ask": 12.85,
+   "last": 12.75,
+   "mark": 12.775,
+   "iv": 56.6,
+   "delta": -0.4584
   },
   {
    "id": "SPCX-1525P-1106",
@@ -29,12 +29,12 @@
    "opened": "2026-09-29",
    "open_under": 149.24,
    "open_under_note": "close 9/29 (Yahoo)",
-   "bid": 2.75,
-   "ask": 2.89,
-   "last": 2.85,
-   "mark": 2.82,
-   "iv": 55.2,
-   "delta": -0.2388
+   "bid": 3.0,
+   "ask": 3.2,
+   "last": 3.05,
+   "mark": 3.1,
+   "iv": 55.0,
+   "delta": -0.2591
   },
   {
    "id": "SPCX-160P-1120",
@@ -48,12 +48,12 @@
    "opened_time": "15:05 ET",
    "open_under": 156.65,
    "open_under_note": "Yahoo 1m bar open 15:05 ET 10/13",
-   "bid": 7.3,
-   "ask": 7.5,
-   "last": 7.25,
-   "mark": 7.4,
+   "bid": 7.8,
+   "ask": 8.0,
+   "last": 7.92,
+   "mark": 7.9,
    "iv": 51.8,
-   "delta": -0.3923
+   "delta": -0.4123
   },
   {
    "id": "SPCX-150P-1106",
@@ -67,12 +67,12 @@
    "opened_time": "15:55 ET",
    "open_under": 146.98,
    "open_under_note": "Yahoo 1m bar close 15:55 ET 10/20",
-   "bid": 2.23,
-   "ask": 2.31,
-   "last": 2.22,
-   "mark": 2.27,
+   "bid": 2.44,
+   "ask": 2.54,
+   "last": 2.49,
+   "mark": 2.49,
    "iv": 55.7,
-   "delta": -0.1994
+   "delta": -0.2173
   }
  ],
  "closed": [],
@@ -153,30 +153,30 @@
  ],
  "market": {
   "SPCX": {
-   "spot": 164.4,
+   "spot": 163.1577,
    "prev": 147.79,
-   "iv30": 51.936,
+   "iv30": 51.614,
    "atm": {
-    "iv": 51.4,
-    "strike": 165.0,
+    "iv": 51.6,
+    "strike": 162.5,
     "exp": "2026-11-20"
    },
    "iv_rank": null,
-   "ts": "2026-10-21 14:28:21"
+   "ts": "2026-10-21 16:25:25"
   },
   "TSLA": {
-   "spot": 386.57,
+   "spot": 386.76,
    "prev": 373.71,
-   "iv30": 44.937,
+   "iv30": 44.114,
    "atm": {
-    "iv": 45.0,
+    "iv": 44.3,
     "strike": 385.0,
     "exp": "2026-11-20"
    },
    "iv_rank": null,
-   "ts": "2026-10-21 14:28:16"
+   "ts": "2026-10-21 16:25:20"
   }
  },
- "refreshed_utc": "2026-10-21 14:28:21Z",
- "refreshed_run": "2026-10-21T14:29:07.543864+00:00"
+ "refreshed_utc": "2026-10-21 16:25:25Z",
+ "refreshed_run": "2026-10-21T16:26:01.059659+00:00"
 }
