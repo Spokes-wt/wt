@@ -79,14 +79,14 @@ function render(){
   const pl=nz(mark)?(cr-mark)*100*q:null; if(nz(pl))tot+=pl;else ok=false; res+=p.strike*100*q;
   const chg=nz(mark)?mark-cr:null,chgp=nz(mark)?(mark/cr-1)*100:null,cap=nz(mark)?(1-mark/cr)*100:null;
   const d=dte(p.exp),age=-dte(p.opened),be=p.strike-cr,dist=nz(spot)?(spot/p.strike-1)*100:null;
-  const amb=d<=25||(nz(cap)&&cap>=50);
+  const tg=age<=7?50:80,tf=1-tg/100;const amb=d<=25||(nz(cap)&&cap>=tg);
   const ch=[];
-  if(nz(mark)&&mark<=cr*.5)ch.push(['50% HIT','c-g']);else if(nz(mark)&&mark<=cr*.55)ch.push(['near 50%','c-a']);
+  if(nz(mark)&&mark<=cr*tf)ch.push([tg+'% HIT','c-g']);else if(nz(mark)&&mark<=cr*(tf+.05))ch.push(['near '+tg+'%','c-a']);else ch.push(['target '+tg+'% · $'+(cr*tf).toFixed(2),'c-b']);
   if(d<=25)ch.push(['exit window','c-a']);
   const thr=evs.filter(e=>e.catalyst&&e.date>=today().toISOString().slice(0,10)&&e.date<=p.exp&&(!e.tk||e.tk===p.ticker));
   if(thr.length)ch.push(['thru '+thr.map(e=>(e.short||e.tag)+(e.note==='est'?' est':e.note==='calc'?' calc':'')).join(' · '),'c-b']);
   if(nz(dist)&&dist<0)ch.push(['ITM','c-r']);
-  const barc=!nz(cap)?'#444':cap<0?'var(--r)':cap>=50?'var(--a)':'var(--g)';
+  const barc=!nz(cap)?'#444':cap<0?'var(--r)':cap>=tg?'var(--a)':'var(--g)';
   return `<div class="card ${amb?'amb':''}" style="border-color:${C[p.ticker]}">
   <div class="top"><div class="tk" style="color:${C[p.ticker]}">${p.ticker}<span>${p.strike}P · ${md(p.exp)}${' · '+(nz(p.qty)?p.qty+'×':'—')}</span></div>
    <div><div class="pl n ${cls(pl)}">${usd(pl,1)}</div><div class="lbl n" style="margin-top:2px">Reserved <b style="color:var(--tx);font-size:1.25em">${nz(p.qty)?usd(p.strike*100*p.qty):'—'}</b></div></div></div>
@@ -101,7 +101,7 @@ function render(){
    <div><span class="lbl">To strike</span><b class="${cls(dist)}">${pct(dist,1)}</b></div>
    <div><span class="lbl">Max kept</span><b class="${amb&&cap>=50?'a':cls(cap)}">${pct(cap)}</b></div>
   </div>
-  <div class="bar"><i style="width:${nz(cap)?Math.max(0,Math.min(100,cap)):0}%;background:${barc}"></i><u></u></div>
+  <div class="bar"><i style="width:${nz(cap)?Math.max(0,Math.min(100,cap)):0}%;background:${barc}"></i><u style="left:${tg}%"></u></div>
   <div class="chips">${ch.map(c=>`<span class="chip ${c[1]}">${c[0]}</span>`).join('')||'<span class="chip c-m">hold zone</span>'}</div></div>`}).join('');
  $('tpl').textContent=ok?usd(tot,1):'—';$('tpl').className='big n '+(ok?cls(tot):'m');
  $('res').textContent=usd(res);
