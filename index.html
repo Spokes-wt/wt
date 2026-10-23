@@ -35,6 +35,7 @@ body{display:flex;flex-direction:column;gap:14px;padding:calc(env(safe-area-inse
 .chips .chip{white-space:normal}
 .sec{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px;margin-bottom:6px}
 .strip{display:flex;flex-direction:column;gap:8px}
+.mo-d summary{list-style:none;cursor:pointer}.mo-d summary::-webkit-details-marker{display:none}.tx{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;margin:4px 0 0 12px;border-left:2px solid var(--line);font-size:15px}.tx b{font-size:16px}
 .mo{display:flex;align-items:baseline;gap:10px;background:var(--card);border-radius:12px;padding:10px 14px}
 .mo .lbl{flex:1}.mo b{font-size:20px}.mo span.m{font-size:15px!important}
 .ev{display:flex;flex-direction:column;gap:6px}
@@ -115,7 +116,9 @@ function render(){
  for(let d=new Date(st);d<=now;d.setMonth(d.getMonth()+1))mons[d.toISOString().slice(0,7)]=0;
  cl.forEach(c=>{const k=c.closed.slice(0,7);mons[k]=(mons[k]||0)+(c.credit-(c.debit??c.close_debit))*100*c.qty});
  const base=res||1;let ytd=0;
- const mh=Object.entries(mons).reverse().map(([k,v])=>{ytd+=v;return `<div class="mo n"><div class="lbl">${day(k+'-15').toLocaleDateString('en-US',{month:'short',year:'2-digit'})}</div><b class="${cls(v)}">${usd(v)}</b> <span class="m" style="font-size:11px">${pct(v/base*100)}</span></div>`});
+ const mh=Object.entries(mons).reverse().map(([k,v])=>{ytd+=v;const tx=cl.filter(c=>c.closed.slice(0,7)===k).sort((a,b)=>b.closed.localeCompare(a.closed));
+  const rows=tx.map(c=>{const db=c.debit??c.close_debit,r=(c.credit-db)*100*c.qty;return `<div class="tx n"><div><b>${c.ticker} ${c.strike}P ${md(c.exp)} · ${c.qty}×</b><br><span class="lbl">Sold ${md(c.opened)} @ ${f2(c.credit)} · Closed ${md(c.closed)} @ ${f2(db)}</span></div><b class="${cls(r)}">${usd(r)}</b></div>`}).join('')||'<div class="tx lbl">No closed trades yet</div>';
+  return `<details class="mo-d"><summary class="mo n"><div class="lbl">${day(k+'-15').toLocaleDateString('en-US',{month:'short',year:'numeric'})} · ${tx.length} ▾</div><b class="${cls(v)}">${usd(v)}</b> <span class="m" style="font-size:11px">${pct(v/base*100)}</span></summary>${rows}</details>`});
  mh.unshift(`<div class="mo n" style="border:1px solid var(--line)"><div class="lbl">Since Oct 1 · ${cl.length} closed</div><b class="${cls(ytd)}">${usd(ytd)}</b> <span class="m" style="font-size:11px">${pct(ytd/base*100)}</span></div>`);
  $('months').innerHTML=mh.join('');{const ck=now.toISOString().slice(0,7),cv=mons[ck]||0;$('mlbl').textContent=now.toLocaleDateString('en-US',{month:'long'})+' income';$('mtd').textContent=usd(cv);$('mtd').className='big n '+cls(cv);$('mgp').textContent=Math.round(cv/40)+'%';}$('msrc').textContent='src: '+(D.monthly_source||'—');
  const t0=today(),lim=new Date(t0.getTime()+45*864e5);
