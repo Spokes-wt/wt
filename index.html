@@ -44,6 +44,7 @@ body{display:flex;flex-direction:column;gap:14px;padding:calc(env(safe-area-inse
 </style></head><body>
 <div class="hdr">
  <div><div class="lbl">Open P&amp;L</div><div id="tpl" class="big n">—</div><div class="lbl n" style="margin-top:3px">Reserved total <b id="res" style="color:var(--tx);font-size:1.2em">—</b></div></div>
+ <div><div class="lbl" id="mlbl">This month</div><div id="mtd" class="big n">—</div><div class="lbl n" style="margin-top:3px">Goal $4,000 · <b id="mgp" style="color:var(--tx)">—</b></div></div>
  <div> <div class="lbl" style="margin-top:2px"><span class="tag">DELAYED</span> <span id="ts" class="n">—</span></div></div>
 </div>
 <div class="row" id="ivrow"></div>
@@ -110,13 +111,13 @@ function render(){
  $('ivrow').innerHTML=Object.keys(C).map(t=>{const a=(mk[t]||{}).atm,iv=a?a.iv:null,rk=(mk[t]||{}).iv_rank;
   return `<div class="iv n" style="border-color:${C[t]}"><span class="lbl" style="color:${C[t]};width:100%">${t} ATM IV</span><b class="${nz(iv)&&iv<50?'a':''}">${nz(iv)?iv.toFixed(1)+'%':'—'}</b><span class="lbl">Rk ${nz(rk)?rk:'—'}</span>${nz(iv)&&iv<50?'<span class="chip c-a">PREF IV MISSED</span>':''}</div>`}).join('');
  // monthly from closed trades
- const cl=D.closed||[],mons={};const st=new Date(2026,8,1),now=today();
+ const cl=D.closed||[],mons={};const st=new Date(2026,9,1),now=today();
  for(let d=new Date(st);d<=now;d.setMonth(d.getMonth()+1))mons[d.toISOString().slice(0,7)]=0;
- cl.forEach(c=>{const k=c.closed.slice(0,7);mons[k]=(mons[k]||0)+(c.credit-c.debit)*100*c.qty});
+ cl.forEach(c=>{const k=c.closed.slice(0,7);mons[k]=(mons[k]||0)+(c.credit-(c.debit??c.close_debit))*100*c.qty});
  const base=res||1;let ytd=0;
- const mh=Object.entries(mons).map(([k,v])=>{ytd+=v;return `<div class="mo n"><div class="lbl">${day(k+'-15').toLocaleDateString('en-US',{month:'short',year:'2-digit'})}</div><b class="${cls(v)}">${usd(v)}</b> <span class="m" style="font-size:11px">${pct(v/base*100)}</span></div>`});
- mh.push(`<div class="mo n" style="border:1px solid var(--line)"><div class="lbl">YTD · ${cl.length} closed</div><b class="${cls(ytd)}">${usd(ytd)}</b> <span class="m" style="font-size:11px">${pct(ytd/base*100)}</span></div>`);
- $('months').innerHTML=mh.join('');$('msrc').textContent='src: '+(D.monthly_source||'—');
+ const mh=Object.entries(mons).reverse().map(([k,v])=>{ytd+=v;return `<div class="mo n"><div class="lbl">${day(k+'-15').toLocaleDateString('en-US',{month:'short',year:'2-digit'})}</div><b class="${cls(v)}">${usd(v)}</b> <span class="m" style="font-size:11px">${pct(v/base*100)}</span></div>`});
+ mh.unshift(`<div class="mo n" style="border:1px solid var(--line)"><div class="lbl">Since Oct 1 · ${cl.length} closed</div><b class="${cls(ytd)}">${usd(ytd)}</b> <span class="m" style="font-size:11px">${pct(ytd/base*100)}</span></div>`);
+ $('months').innerHTML=mh.join('');{const ck=now.toISOString().slice(0,7),cv=mons[ck]||0;$('mlbl').textContent=now.toLocaleDateString('en-US',{month:'long'})+' income';$('mtd').textContent=usd(cv);$('mtd').className='big n '+cls(cv);$('mgp').textContent=Math.round(cv/40)+'%';}$('msrc').textContent='src: '+(D.monthly_source||'—');
  const t0=today(),lim=new Date(t0.getTime()+45*864e5);
  $('events').innerHTML=evs.filter(e=>day(e.date)>=t0&&day(e.date)<=lim).map(e=>`<div class="e" style="border-color:${C[e.tk]||'#888'}"><span class="d n">${md(e.date)}</span><span class="t">${e.tag}</span>${e.note?`<span class="chip ${e.note==='est'||e.note==='NET'||e.note==='reported'||e.note==='calc'?'c-a':'c-m'}">${e.note==='reported'?'rptd':e.note}</span>`:''}${e.exp?'<span class="chip c-m">exp</span>':''}</div>`).join('');
 }
