@@ -17,16 +17,49 @@ def parse(sym):
 
 def num(x): return x if isinstance(x, (int, float)) and x > 0 else None
 
+def yahoo_spot(t):
+    """Near-live last (1m bar). Used when CBOE spot is missing or prior-session."""
+    try:
+        req = urllib.request.Request(
+            f"https://query1.finance.yahoo.com/v8/finance/chart/{t}?interval=1m&range=1d",
+            headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            res = json.load(r)["chart"]["result"][0]
+        closes = [c for c in res["indicators"]["quote"][0]["close"] if c is not None]
+        if not closes: return None, None
+        return round(closes[-1], 2), datetime.datetime.fromtimestamp(res["timestamp"][-1], datetime.timezone.utc)
+    except Exception as e:
+        print("yahoo fail", t, e); return None, None
+
+def cboe_fresh(ts):
+    if not ts: return False
+    try:
+        # CBOE timestamp is ET wall clock without offset; treat as America/New_York date
+        dt = datetime.datetime.strptime(ts[:19], "%Y-%m-%d %H:%M:%S")
+        return dt.date() == datetime.date.today()
+    except Exception:
+        return False
+
 data = json.loads((D / "data.json").read_text())
 today = datetime.date.today()
 mk = data.setdefault("market", {})
-for t in sorted({p["ticker"] for p in data["positions"]}):
+# Always refresh TSLA + SPCX market header (Dave keeps TSLA listed with no open put)
+tickers = sorted({p["ticker"] for p in data["positions"]} | {"TSLA", "SPCX"})
+for t in tickers:
     try:
         j = get(t)
     except Exception as e:
         print("fetch fail", t, e); continue
     d = j["data"]; opts = d.get("options", [])
-    spot = num(d.get("current_price")) or num(d.get("close"))
+    ts = j.get("timestamp")
+    spot = num(d.get("current_price")) if cboe_fresh(ts) else None
+    if not spot:
+        y, yts = yahoo_spot(t)
+        if y:
+            spot, ts = y, (yts.strftime("%Y-%m-%d %H:%M:%S") if yts else ts)
+            print("spot from yahoo", t, spot)
+        else:
+            spot = num(d.get("current_price")) or num(d.get("close"))
     # ATM IV: nearest expiry in 30-45 DTE (else closest to 37), put strike nearest spot
     exps = sorted({parse(o["option"])[1] for o in opts if parse(o["option"])})
     win = [e for e in exps if 30 <= (e - today).days <= 45] or sorted(exps, key=lambda e: abs((e - today).days - 37))[:1]
@@ -37,7 +70,7 @@ for t in sorted({p["ticker"] for p in data["positions"]}):
             o = min(puts, key=lambda o: abs(parse(o["option"])[3] - spot))
             atm = {"iv": round(o["iv"] * 100, 1), "strike": parse(o["option"])[3], "exp": win[0].isoformat()}
     mk[t] = {"spot": spot, "prev": num(d.get("prev_day_close")), "iv30": num(d.get("iv30")),
-             "atm": atm, "iv_rank": None, "ts": j.get("timestamp")}
+             "atm": atm, "iv_rank": None, "ts": ts}
     for p in data["positions"]:
         if p["ticker"] != t: continue
         osym = f"{t}{datetime.date.fromisoformat(p['exp']):%y%m%d}{'P' if p['type']=='CSP' else 'C'}{int(round(p['strike']*1000)):08d}"
