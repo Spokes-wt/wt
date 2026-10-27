@@ -74,6 +74,19 @@ for t in tickers:
             atm = {"iv": round(o["iv"] * 100, 1), "strike": parse(o["option"])[3], "exp": win[0].isoformat()}
     mk[t] = {"spot": spot, "prev": num(d.get("prev_day_close")), "iv30": num(d.get("iv30")),
              "atm": atm, "iv_rank": None, "ts": ts}
+    if t == "SPCX":
+        best = None
+        for o in opts:
+            q = parse(o["option"])
+            if not q or q[2] != "P": continue
+            dd = (q[1] - today).days; b = num(o.get("bid")); dl = o.get("delta")
+            if not (30 <= dd <= 45) or not b or not isinstance(dl, (int, float)) or not (0.40 <= abs(dl) <= 0.55): continue
+            ann = b / q[3] * 365 / dd * 100
+            if not best or ann > best["ann"]:
+                best = {"strike": q[3], "exp": q[1].isoformat(), "dte": dd, "bid": b, "delta": round(dl, 3),
+                        "iv": round(o["iv"] * 100, 1) if num(o.get("iv")) else None, "ann": round(ann, 1)}
+        data["redeploy"] = {"as_of": ts, "candidate": best,
+                            "note": "bid-based; 30-45 DTE; 0.40-0.55Δ" + ("" if best else " — no put with bid in band")}
     for p in data["positions"]:
         if p["ticker"] != t: continue
         osym = f"{t}{datetime.date.fromisoformat(p['exp']):%y%m%d}{'P' if p['type']=='CSP' else 'C'}{int(round(p['strike']*1000)):08d}"
