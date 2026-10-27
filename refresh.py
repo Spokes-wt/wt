@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Positions carry qty (contracts); $ math in the dashboard scales by qty, per-share fields stay per contract.
-Pull delayed CBOE quotes -> update data.json -> re-embed into index-wt.html (+ copy to index.html). Missing values stay null (shown as '—')."""
+Spot from Yahoo 1m last (CBOE fallback); options from delayed CBOE -> update data.json -> re-embed into index-wt.html (+ copy to index.html). Missing values stay null (shown as '—')."""
 import json, re, datetime, urllib.request, pathlib
 D = pathlib.Path(__file__).resolve().parent
 URL = "https://cdn-api.cboe.com/api/global/delayed_quotes/options/{}.json"
@@ -52,14 +52,17 @@ for t in tickers:
         print("fetch fail", t, e); continue
     d = j["data"]; opts = d.get("options", [])
     ts = j.get("timestamp")
-    spot = num(d.get("current_price")) if cboe_fresh(ts) else None
-    if not spot:
-        y, yts = yahoo_spot(t)
-        if y:
-            spot, ts = y, (yts.strftime("%Y-%m-%d %H:%M:%S") if yts else ts)
-            print("spot from yahoo", t, spot)
-        else:
+    # Spot: prefer Yahoo 1m last (near-live); CBOE delayed only as fallback. Options still CBOE.
+    y, yts = yahoo_spot(t)
+    if y:
+        spot = y
+        ts = yts.strftime("%Y-%m-%d %H:%M:%S") if yts else ts
+        print("spot from yahoo", t, spot)
+    else:
+        spot = num(d.get("current_price")) if cboe_fresh(ts) else None
+        if not spot:
             spot = num(d.get("current_price")) or num(d.get("close"))
+        print("spot from cboe fallback", t, spot)
     # ATM IV: nearest expiry in 30-45 DTE (else closest to 37), put strike nearest spot
     exps = sorted({parse(o["option"])[1] for o in opts if parse(o["option"])})
     win = [e for e in exps if 30 <= (e - today).days <= 45] or sorted(exps, key=lambda e: abs((e - today).days - 37))[:1]
