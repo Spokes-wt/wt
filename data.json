@@ -1,24 +1,6 @@
 {
  "positions": [
   {
-   "id": "SPCX-1525P-1106",
-   "ticker": "SPCX",
-   "type": "CSP",
-   "strike": 152.5,
-   "exp": "2026-11-06",
-   "credit": 11.15,
-   "qty": 2,
-   "opened": "2026-09-29",
-   "open_under": 149.24,
-   "open_under_note": "close 9/29 (Yahoo)",
-   "bid": 28.25,
-   "ask": 30.0,
-   "last": 29.21,
-   "mark": 29.125,
-   "iv": 232.0,
-   "delta": -0.9964
-  },
-  {
    "id": "SPCX-160P-1120",
    "ticker": "SPCX",
    "type": "CSP",
@@ -36,25 +18,6 @@
    "mark": 36.5,
    "iv": 69.4,
    "delta": -0.9454
-  },
-  {
-   "id": "SPCX-150P-1106",
-   "ticker": "SPCX",
-   "type": "CSP",
-   "strike": 150,
-   "exp": "2026-11-06",
-   "credit": 9.75,
-   "qty": 6,
-   "opened": "2026-10-20",
-   "opened_time": "15:55 ET",
-   "open_under": 146.98,
-   "open_under_note": "Yahoo 1m bar close 15:55 ET 10/20",
-   "bid": 25.8,
-   "ask": 27.6,
-   "last": 26.13,
-   "mark": 26.7,
-   "iv": 227.9,
-   "delta": -0.9952
   },
   {
    "id": "SPCX-150P-1127",
@@ -136,6 +99,53 @@
    "closed_time": "13:34:50 ET",
    "close_debit": 16.85,
    "realized": 670.0
+  },
+  {
+   "id": "SPCX-1525P-1106",
+   "ticker": "SPCX",
+   "type": "CSP",
+   "strike": 152.5,
+   "exp": "2026-11-06",
+   "credit": 11.15,
+   "qty": 2,
+   "opened": "2026-09-29",
+   "open_under": 149.24,
+   "open_under_note": "close 9/29 (Yahoo)",
+   "bid": 28.25,
+   "ask": 30.0,
+   "last": 29.21,
+   "mark": 29.125,
+   "iv": 232.0,
+   "delta": -0.9964,
+   "closed": "2026-11-06",
+   "close_debit": 0.0,
+   "realized": 2230.0,
+   "outcome": "assigned",
+   "outcome_note": "assigned (reported Nov 6)"
+  },
+  {
+   "id": "SPCX-150P-1106",
+   "ticker": "SPCX",
+   "type": "CSP",
+   "strike": 150,
+   "exp": "2026-11-06",
+   "credit": 9.75,
+   "qty": 6,
+   "opened": "2026-10-20",
+   "opened_time": "15:55 ET",
+   "open_under": 146.98,
+   "open_under_note": "Yahoo 1m bar close 15:55 ET 10/20",
+   "bid": 25.8,
+   "ask": 27.6,
+   "last": 26.13,
+   "mark": 26.7,
+   "iv": 227.9,
+   "delta": -0.9952,
+   "closed": "2026-11-06",
+   "close_debit": 0.0,
+   "realized": 5850.0,
+   "outcome": "assigned",
+   "outcome_note": "assigned (reported Nov 6)"
   }
  ],
  "monthly_source": "workbook not found",
@@ -215,43 +225,67 @@
  ],
  "market": {
   "SPCX": {
-   "spot": 123.62,
-   "prev": 135.92,
-   "iv30": 66.555,
+   "spot": 131.33,
+   "prev": 123.62,
+   "iv30": 66.177,
    "atm": {
-    "iv": 65.6,
-    "strike": 125.0,
+    "iv": 64.9,
+    "strike": 130.0,
     "exp": "2026-12-11"
    },
    "iv_rank": null,
-   "ts": "2026-11-05 21:00:00"
+   "ts": "2026-11-06 14:40:42"
   },
   "TSLA": {
-   "spot": 343.69,
-   "prev": 385.19,
-   "iv30": 56.84,
+   "spot": 353.04,
+   "prev": 343.69,
+   "iv30": 53.914,
    "atm": {
-    "iv": 55.6,
-    "strike": 345.0,
+    "iv": 52.4,
+    "strike": 355.0,
     "exp": "2026-12-11"
    },
    "iv_rank": null,
-   "ts": "2026-11-05 21:00:00"
+   "ts": "2026-11-06 14:40:43"
   }
  },
- "refreshed_utc": "2026-11-05 21:00:00Z",
- "refreshed_run": "2026-11-05T21:26:08.256174+00:00",
+ "refreshed_utc": "2026-11-06 14:40:43Z",
+ "refreshed_run": "2026-11-06T14:40:43.818228+00:00",
  "redeploy": {
-  "as_of": "2026-11-05 21:00:00",
+  "as_of": "2026-11-06 14:40:42",
   "candidate": {
    "strike": 130.0,
    "exp": "2026-12-18",
-   "dte": 43,
+   "dte": 42,
    "bid": 13.75,
    "delta": -0.546,
    "iv": 62.5,
-   "ann": 89.8
+   "ann": 91.9
   },
   "note": "bid-based; 30-45 DTE; 0.40-0.55\u0394"
- }
+ },
+ "assigned": [
+  {
+   "id": "SPCX-ASG-1525",
+   "ticker": "SPCX",
+   "shares": 200,
+   "assigned": "2026-11-06",
+   "strike": 152.5,
+   "credit": 11.15,
+   "basis": 141.35,
+   "src": "2\u00d7 6 Nov 152.5P (sold 9/29 @ 11.15)",
+   "note": "assigned (reported Nov 6)"
+  },
+  {
+   "id": "SPCX-ASG-150",
+   "ticker": "SPCX",
+   "shares": 600,
+   "assigned": "2026-11-06",
+   "strike": 150.0,
+   "credit": 9.75,
+   "basis": 140.25,
+   "src": "6\u00d7 6 Nov 150P (sold 10/20 @ 9.75)",
+   "note": "assigned (reported Nov 6)"
+  }
+ ]
 }
