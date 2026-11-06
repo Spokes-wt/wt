@@ -119,9 +119,9 @@
    "delta": -0.9964,
    "closed": "2026-11-06",
    "close_debit": 0.0,
-   "realized": 2230.0,
+   "realized": 0.0,
    "outcome": "assigned",
-   "outcome_note": "assigned (reported Nov 6)"
+   "outcome_note": "assigned (reported Nov 6) \u00b7 premium rolled into share basis, not income"
   },
   {
    "id": "SPCX-150P-1106",
@@ -143,9 +143,9 @@
    "delta": -0.9952,
    "closed": "2026-11-06",
    "close_debit": 0.0,
-   "realized": 5850.0,
+   "realized": 0.0,
    "outcome": "assigned",
-   "outcome_note": "assigned (reported Nov 6)"
+   "outcome_note": "assigned (reported Nov 6) \u00b7 premium rolled into share basis, not income"
   }
  ],
  "monthly_source": "workbook not found",
