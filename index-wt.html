@@ -43,11 +43,15 @@ body{display:flex;flex-direction:column;gap:14px;padding:calc(env(safe-area-inse
 .e .d{font-weight:800;width:62px;flex:none}.e .t{flex:1}
 .ft{text-align:center;font-size:13px;color:#6c7283;padding-top:4px}
 .pl,.big,.mo b,.grid b{white-space:nowrap}
+.stat{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:2px}
+.rbtn{appearance:none;-webkit-appearance:none;border:1px solid var(--line);background:#222632;color:var(--tx);font-family:inherit;font-size:14px;font-weight:700;letter-spacing:.2px;text-transform:none;border-radius:10px;min-height:44px;min-width:44px;padding:0 14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.rbtn:active{background:#2c3140}
+.chk{font-size:12.5px;color:var(--mut);font-weight:600}
 </style></head><body>
 <div class="hdr">
  <div><div class="lbl">Open P&amp;L</div><div id="tpl" class="big n">—</div><div class="lbl n" style="margin-top:3px">Reserved total <b id="res" style="color:var(--tx);font-size:1.2em">—</b></div></div>
  <div><div class="lbl" id="mlbl">This month</div><div id="mtd" class="big n">—</div><div class="lbl n" style="margin-top:3px">Goal $4,000 · <b id="mgp" style="color:var(--tx)">—</b></div></div>
- <div> <div class="lbl" style="margin-top:2px"><span class="tag">DELAYED</span> <span id="ts" class="n">—</span></div></div>
+ <div class="stat"><div class="lbl"><span class="tag">DELAYED</span> <span id="ts" class="n">—</span></div><button type="button" id="rbtn" class="rbtn" aria-label="Refresh">↻ Refresh</button><span id="chk" class="chk n"></span></div>
 </div>
 <div class="row" id="ivrow"></div>
 <div class="cards" id="cards"></div>
@@ -159,6 +163,20 @@ render();
 function postH(){try{window.parent.postMessage({wtHeight:document.body.scrollHeight},'*')}catch(e){}}
 addEventListener('load',postH);addEventListener('resize',postH);new ResizeObserver(postH).observe(document.body);setTimeout(postH,500);
 // When hosted: try fresh data.json (falls back silently to embedded data when opened as file)
-if(location.protocol.startsWith('http')){const pull=()=>fetch('data.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(j=>{DATA=j;render();postH()}).catch(()=>{});pull();addEventListener('visibilitychange',()=>{if(!document.hidden)pull()});addEventListener('pageshow',e=>{if(e.persisted)pull()});
- if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});}
+if(location.protocol.startsWith('http')){
+ const stamp=()=>{const t=new Date();$('chk').textContent='Checked '+t.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})};
+ const pull=()=>fetch('data.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(j=>{DATA=j;render();postH();stamp()}).catch(()=>{});
+ let lastTap=0;
+ const hard=async()=>{
+  try{if('serviceWorker'in navigator){const rs=await navigator.serviceWorker.getRegistrations();await Promise.all(rs.map(async r=>{try{await r.update()}catch(e){}return r.unregister()}))}}catch(e){}
+  const u=new URL(location.href);u.searchParams.set('v',String(Date.now()));location.replace(u.href);
+ };
+ $('rbtn').addEventListener('click',()=>{const n=Date.now();if(n-lastTap<3000){hard();return}lastTap=n;pull()});
+ pull();
+ addEventListener('visibilitychange',()=>{if(!document.hidden)pull()});
+ addEventListener('pageshow',e=>{if(e.persisted)pull()});
+ addEventListener('focus',pull);
+ setInterval(()=>{if(!document.hidden)pull()},18e4);
+ if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
 </script></body></html>
