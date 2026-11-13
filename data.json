@@ -75,6 +75,25 @@
    "mark": 13.525,
    "iv": 60.7,
    "delta": -0.7097
+  },
+  {
+   "id": "SPCX-140P-1218",
+   "ticker": "SPCX",
+   "type": "CSP",
+   "strike": 140,
+   "exp": "2026-12-18",
+   "credit": 9.59,
+   "qty": 2,
+   "opened": "2026-11-13",
+   "opened_time": "15:50 ET",
+   "open_under": 140.21,
+   "open_under_note": "Yahoo 1m bar close 15:50 ET 11/13 (fill ~3:50 PM per Dave)",
+   "bid": 10.0,
+   "ask": 10.4,
+   "last": 10.14,
+   "mark": 10.2,
+   "iv": 57.9,
+   "delta": -0.4731
   }
  ],
  "closed": [
@@ -221,6 +240,12 @@
    "date": "2026-12-08",
    "tag": "Lockup ends",
    "tk": "SPCX"
+  },
+  {
+   "date": "2026-12-18",
+   "tag": "140P expiry",
+   "tk": "SPCX",
+   "exp": true
   }
  ],
  "market": {
@@ -250,7 +275,7 @@
   }
  },
  "refreshed_utc": "2026-11-13 21:00:00Z",
- "refreshed_run": "2026-11-13T21:28:19.946066+00:00",
+ "refreshed_run": "2026-11-13T21:57:48.475447+00:00",
  "redeploy": {
   "as_of": "2026-11-13 21:00:00",
   "candidate": {
