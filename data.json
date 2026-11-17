@@ -13,11 +13,11 @@
    "open_under": 156.65,
    "open_under_note": "Yahoo 1m bar open 15:05 ET 10/13",
    "bid": 18.75,
-   "ask": 20.9,
-   "last": 19.06,
-   "mark": 19.825,
-   "iv": 111.3,
-   "delta": -0.9558
+   "ask": 19.75,
+   "last": 19.16,
+   "mark": 19.25,
+   "iv": 94.3,
+   "delta": -0.9533
   },
   {
    "id": "SPCX-150P-1127",
@@ -31,12 +31,12 @@
    "opened_time": "10:57 ET",
    "open_under": 149.55,
    "open_under_note": "Yahoo 1m bar close 10:57 ET 10/22",
-   "bid": 11.1,
-   "ask": 12.15,
-   "last": 11.2,
-   "mark": 11.625,
-   "iv": 63.5,
-   "delta": -0.7211
+   "bid": 10.85,
+   "ask": 11.2,
+   "last": 11.1,
+   "mark": 11.025,
+   "iv": 58.6,
+   "delta": -0.7103
   },
   {
    "id": "SPCX-150P-1127b",
@@ -50,12 +50,12 @@
    "opened_time": "13:24 ET",
    "open_under": 147.64,
    "open_under_note": "Yahoo 1m bar close 13:24 ET 10/22",
-   "bid": 11.1,
-   "ask": 12.15,
-   "last": 11.2,
-   "mark": 11.625,
-   "iv": 63.5,
-   "delta": -0.7211
+   "bid": 10.85,
+   "ask": 11.2,
+   "last": 11.1,
+   "mark": 11.025,
+   "iv": 58.6,
+   "delta": -0.7103
   },
   {
    "id": "SPCX-150P-1127c",
@@ -69,12 +69,12 @@
    "opened_time": "15:53 ET",
    "open_under": 144.07,
    "open_under_note": "Yahoo 1m bar close 15:53 ET 10/22",
-   "bid": 11.1,
-   "ask": 12.15,
-   "last": 11.2,
-   "mark": 11.625,
-   "iv": 63.5,
-   "delta": -0.7211
+   "bid": 10.85,
+   "ask": 11.2,
+   "last": 11.1,
+   "mark": 11.025,
+   "iv": 58.6,
+   "delta": -0.7103
   },
   {
    "id": "SPCX-140P-1218",
@@ -88,12 +88,12 @@
    "opened_time": "15:50 ET",
    "open_under": 140.21,
    "open_under_note": "Yahoo 1m bar close 15:50 ET 11/13 (fill ~3:50 PM per Dave)",
-   "bid": 8.55,
-   "ask": 8.65,
-   "last": 8.9,
-   "mark": 8.6,
-   "iv": 56.8,
-   "delta": -0.4472
+   "bid": 8.6,
+   "ask": 8.7,
+   "last": 8.67,
+   "mark": 8.65,
+   "iv": 58.0,
+   "delta": -0.4401
   }
  ],
  "closed": [
@@ -250,41 +250,41 @@
  ],
  "market": {
   "SPCX": {
-   "spot": 141.01,
+   "spot": 140.93,
    "prev": 137.36,
-   "iv30": 56.671,
+   "iv30": 57.476,
    "atm": {
-    "iv": 56.8,
+    "iv": 58.0,
     "strike": 140.0,
     "exp": "2026-12-18"
    },
    "iv_rank": null,
-   "ts": "2026-11-17 15:28:09"
+   "ts": "2026-11-17 16:34:21"
   },
   "TSLA": {
-   "spot": 381.27,
+   "spot": 379.24,
    "prev": 379.74,
-   "iv30": 49.428,
+   "iv30": 50.626,
    "atm": {
-    "iv": 49.5,
+    "iv": 50.2,
     "strike": 380.0,
     "exp": "2026-12-18"
    },
    "iv_rank": null,
-   "ts": "2026-11-17 15:28:09"
+   "ts": "2026-11-17 16:34:18"
   }
  },
- "refreshed_utc": "2026-11-17 15:28:09Z",
- "refreshed_run": "2026-11-17T15:28:10.601056+00:00",
+ "refreshed_utc": "2026-11-17 16:34:21Z",
+ "refreshed_run": "2026-11-17T16:34:22.973637+00:00",
  "redeploy": {
-  "as_of": "2026-11-17 15:28:09",
+  "as_of": "2026-11-17 16:34:21",
   "candidate": {
    "strike": 145.0,
    "exp": "2026-12-18",
    "dte": 31,
    "bid": 11.2,
-   "delta": -0.533,
-   "iv": 56.1,
+   "delta": -0.524,
+   "iv": 56.8,
    "ann": 90.9
   },
   "note": "bid-based; 30-45 DTE; 0.40-0.55\u0394"
