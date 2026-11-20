@@ -6,7 +6,7 @@ D = pathlib.Path(__file__).resolve().parent
 URL = "https://cdn-api.cboe.com/api/global/delayed_quotes/options/{}.json"
 
 def get(t):
-    req = urllib.request.Request(URL.format(t), headers={"User-Agent": "Mozilla/5.0"})
+    req = urllib.request.Request(URL.format(t), headers={"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36", "Accept": "application/json", "Referer": "https://www.cboe.com/"})
     with urllib.request.urlopen(req, timeout=30) as r:  # urllib follows redirects
         return json.load(r)
 
