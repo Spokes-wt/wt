@@ -1,25 +1,6 @@
 {
  "positions": [
   {
-   "id": "SPCX-160P-1120",
-   "ticker": "SPCX",
-   "type": "CSP",
-   "strike": 160,
-   "exp": "2026-11-20",
-   "credit": 12.0,
-   "qty": 2,
-   "opened": "2026-10-13",
-   "opened_time": "15:05 ET",
-   "open_under": 156.65,
-   "open_under_note": "Yahoo 1m bar open 15:05 ET 10/13",
-   "bid": 20.8,
-   "ask": 22.65,
-   "last": 22.65,
-   "mark": 21.725,
-   "iv": null,
-   "delta": -0.9941
-  },
-  {
    "id": "SPCX-150P-1127",
    "ticker": "SPCX",
    "type": "CSP",
@@ -165,6 +146,30 @@
    "realized": 0.0,
    "outcome": "assigned",
    "outcome_note": "assigned (reported Nov 6) \u00b7 premium rolled into share basis, not income"
+  },
+  {
+   "id": "SPCX-160P-1120",
+   "ticker": "SPCX",
+   "type": "CSP",
+   "strike": 160,
+   "exp": "2026-11-20",
+   "credit": 12.0,
+   "qty": 2,
+   "opened": "2026-10-13",
+   "opened_time": "15:05 ET",
+   "open_under": 156.65,
+   "open_under_note": "Yahoo 1m bar open 15:05 ET 10/13",
+   "bid": 20.8,
+   "ask": 22.65,
+   "last": 22.65,
+   "mark": 21.725,
+   "iv": null,
+   "delta": -0.9941,
+   "closed": "2026-11-20",
+   "close_debit": 0.0,
+   "realized": 0.0,
+   "outcome": "assigned",
+   "outcome_note": "assigned early (reported Nov 20 AM, before expiry) \u00b7 premium rolled into share basis, not income"
   }
  ],
  "monthly_source": "workbook not found",
@@ -311,6 +316,17 @@
    "basis": 140.25,
    "src": "6\u00d7 6 Nov 150P (sold 10/20 @ 9.75)",
    "note": "assigned (reported Nov 6)"
+  },
+  {
+   "id": "SPCX-ASG-160",
+   "ticker": "SPCX",
+   "shares": 200,
+   "assigned": "2026-11-20",
+   "strike": 160.0,
+   "credit": 12.0,
+   "basis": 148.0,
+   "src": "2\u00d7 20 Nov 160P (sold 10/13 @ 12.00)",
+   "note": "assigned early (reported Nov 20 AM)"
   }
  ]
 }
