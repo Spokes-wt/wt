@@ -1,63 +1,6 @@
 {
  "positions": [
   {
-   "id": "SPCX-150P-1127",
-   "ticker": "SPCX",
-   "type": "CSP",
-   "strike": 150,
-   "exp": "2026-11-27",
-   "credit": 9.27,
-   "qty": 1,
-   "opened": "2026-10-22",
-   "opened_time": "10:57 ET",
-   "open_under": 149.55,
-   "open_under_note": "Yahoo 1m bar close 10:57 ET 10/22",
-   "bid": 33.15,
-   "ask": 34.0,
-   "last": 33.65,
-   "mark": 33.575,
-   "iv": 146.2,
-   "delta": -0.9956
-  },
-  {
-   "id": "SPCX-150P-1127b",
-   "ticker": "SPCX",
-   "type": "CSP",
-   "strike": 150,
-   "exp": "2026-11-27",
-   "credit": 10.55,
-   "qty": 2,
-   "opened": "2026-10-22",
-   "opened_time": "13:24 ET",
-   "open_under": 147.64,
-   "open_under_note": "Yahoo 1m bar close 13:24 ET 10/22",
-   "bid": 33.15,
-   "ask": 34.0,
-   "last": 33.65,
-   "mark": 33.575,
-   "iv": 146.2,
-   "delta": -0.9956
-  },
-  {
-   "id": "SPCX-150P-1127c",
-   "ticker": "SPCX",
-   "type": "CSP",
-   "strike": 150,
-   "exp": "2026-11-27",
-   "credit": 12.5,
-   "qty": 3,
-   "opened": "2026-10-22",
-   "opened_time": "15:53 ET",
-   "open_under": 144.07,
-   "open_under_note": "Yahoo 1m bar close 15:53 ET 10/22",
-   "bid": 33.15,
-   "ask": 34.0,
-   "last": 33.65,
-   "mark": 33.575,
-   "iv": 146.2,
-   "delta": -0.9956
-  },
-  {
    "id": "SPCX-140P-1218",
    "ticker": "SPCX",
    "type": "CSP",
@@ -69,12 +12,12 @@
    "opened_time": "15:50 ET",
    "open_under": 140.21,
    "open_under_note": "Yahoo 1m bar close 15:50 ET 11/13 (fill ~3:50 PM per Dave)",
-   "bid": 24.85,
-   "ask": 25.2,
-   "last": 25.31,
-   "mark": 25.025,
+   "bid": 24.25,
+   "ask": 24.45,
+   "last": 24.38,
+   "mark": 24.35,
    "iv": 70.9,
-   "delta": -0.8271
+   "delta": -0.8138
   }
  ],
  "closed": [
@@ -170,6 +113,78 @@
    "realized": 0.0,
    "outcome": "assigned",
    "outcome_note": "assigned early (reported Nov 20 AM, before expiry) \u00b7 premium rolled into share basis, not income"
+  },
+  {
+   "id": "SPCX-150P-1127",
+   "ticker": "SPCX",
+   "type": "CSP",
+   "strike": 150,
+   "exp": "2026-11-27",
+   "credit": 9.27,
+   "qty": 1,
+   "opened": "2026-10-22",
+   "opened_time": "10:57 ET",
+   "open_under": 149.55,
+   "open_under_note": "Yahoo 1m bar close 10:57 ET 10/22",
+   "bid": 33.15,
+   "ask": 34.0,
+   "last": 33.65,
+   "mark": 33.575,
+   "iv": 146.2,
+   "delta": -0.9956,
+   "closed": "2026-11-25",
+   "close_debit": 0.0,
+   "realized": 0.0,
+   "outcome": "assigned",
+   "outcome_note": "assigned early (reported Nov 25 AM, before expiry) \u00b7 premium rolled into share basis, not income"
+  },
+  {
+   "id": "SPCX-150P-1127b",
+   "ticker": "SPCX",
+   "type": "CSP",
+   "strike": 150,
+   "exp": "2026-11-27",
+   "credit": 10.55,
+   "qty": 2,
+   "opened": "2026-10-22",
+   "opened_time": "13:24 ET",
+   "open_under": 147.64,
+   "open_under_note": "Yahoo 1m bar close 13:24 ET 10/22",
+   "bid": 33.15,
+   "ask": 34.0,
+   "last": 33.65,
+   "mark": 33.575,
+   "iv": 146.2,
+   "delta": -0.9956,
+   "closed": "2026-11-25",
+   "close_debit": 0.0,
+   "realized": 0.0,
+   "outcome": "assigned",
+   "outcome_note": "assigned early (reported Nov 25 AM, before expiry) \u00b7 premium rolled into share basis, not income"
+  },
+  {
+   "id": "SPCX-150P-1127c",
+   "ticker": "SPCX",
+   "type": "CSP",
+   "strike": 150,
+   "exp": "2026-11-27",
+   "credit": 12.5,
+   "qty": 3,
+   "opened": "2026-10-22",
+   "opened_time": "15:53 ET",
+   "open_under": 144.07,
+   "open_under_note": "Yahoo 1m bar close 15:53 ET 10/22",
+   "bid": 33.15,
+   "ask": 34.0,
+   "last": 33.65,
+   "mark": 33.575,
+   "iv": 146.2,
+   "delta": -0.9956,
+   "closed": "2026-11-25",
+   "close_debit": 0.0,
+   "realized": 0.0,
+   "outcome": "assigned",
+   "outcome_note": "assigned early (reported Nov 25 AM, before expiry) \u00b7 premium rolled into share basis, not income"
   }
  ],
  "monthly_source": "workbook not found",
@@ -255,42 +270,42 @@
  ],
  "market": {
   "SPCX": {
-   "spot": 117.25,
+   "spot": 119.22,
    "prev": 125.81,
-   "iv30": 76.154,
+   "iv30": 75.548,
    "atm": {
-    "iv": 74.0,
-    "strike": 115.0,
+    "iv": 71.7,
+    "strike": 120.0,
     "exp": "2026-12-31"
    },
    "iv_rank": null,
-   "ts": "2026-11-25 16:27:06"
+   "ts": "2026-11-25 16:56:49"
   },
   "TSLA": {
-   "spot": 364.84,
+   "spot": 364.65,
    "prev": 384.68,
-   "iv30": 60.891,
+   "iv30": 61.532,
    "atm": {
-    "iv": 58.8,
+    "iv": 59.0,
     "strike": 365.0,
     "exp": "2026-12-31"
    },
    "iv_rank": null,
-   "ts": "2026-11-25 16:27:11"
+   "ts": "2026-11-25 16:56:50"
   }
  },
- "refreshed_utc": "2026-11-25 16:27:11Z",
- "refreshed_run": "2026-11-25T16:27:13.367576+00:00",
+ "refreshed_utc": "2026-11-25 16:56:50Z",
+ "refreshed_run": "2026-11-25T16:56:51.087911+00:00",
  "redeploy": {
-  "as_of": "2026-11-25 16:27:06",
+  "as_of": "2026-11-25 16:56:49",
   "candidate": {
    "strike": 120.0,
    "exp": "2026-12-31",
    "dte": 36,
-   "bid": 12.1,
-   "delta": -0.501,
-   "iv": 72.5,
-   "ann": 102.2
+   "bid": 11.55,
+   "delta": -0.488,
+   "iv": 71.7,
+   "ann": 97.6
   },
   "note": "bid-based; 30-45 DTE; 0.40-0.55\u0394"
  },
@@ -327,6 +342,39 @@
    "basis": 148.0,
    "src": "2\u00d7 20 Nov 160P (sold 10/13 @ 12.00)",
    "note": "assigned early (reported Nov 20 AM)"
+  },
+  {
+   "id": "SPCX-ASG-150-1127",
+   "ticker": "SPCX",
+   "shares": 100,
+   "assigned": "2026-11-25",
+   "strike": 150.0,
+   "credit": 9.27,
+   "basis": 140.73,
+   "src": "1\u00d7 27 Nov 150P (sold 10/22 @ 9.27)",
+   "note": "assigned early (reported Nov 25 AM, overnight Nov 24\u201325)"
+  },
+  {
+   "id": "SPCX-ASG-150-1127b",
+   "ticker": "SPCX",
+   "shares": 200,
+   "assigned": "2026-11-25",
+   "strike": 150.0,
+   "credit": 10.55,
+   "basis": 139.45,
+   "src": "2\u00d7 27 Nov 150P (sold 10/22 @ 10.55)",
+   "note": "assigned early (reported Nov 25 AM, overnight Nov 24\u201325)"
+  },
+  {
+   "id": "SPCX-ASG-150-1127c",
+   "ticker": "SPCX",
+   "shares": 300,
+   "assigned": "2026-11-25",
+   "strike": 150.0,
+   "credit": 12.5,
+   "basis": 137.5,
+   "src": "3\u00d7 27 Nov 150P (sold 10/22 @ 12.50)",
+   "note": "assigned early (reported Nov 25 AM, overnight Nov 24\u201325)"
   }
  ]
 }
